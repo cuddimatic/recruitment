@@ -2,12 +2,12 @@ import { useState } from "react";
 import BudgetModal from "./BudgetModal";
 import CalendarDrawer from "./CalendarDrawer";
 import UserProfileDropdown from "./UserProfileModal";
-import budget from "../assets/budget.svg";
-import logo from "../assets/logo.svg";
-import calendar from "../assets/calendar.svg";
-import search from "../assets/search.svg";
-import wallet from "../assets/wallet.svg";
-import cart from "../assets/cart.svg";
+import budget from "@/assets/budget.svg";
+import logo from "@/assets/logo.svg";
+import calendar from "@/assets/calendar.svg";
+import search from "@/assets/search.svg";
+import wallet from "@/assets/wallet.svg";
+import cart from "@/assets/cart.svg";
 
 const DashboardHeader = () => {
   const [budgetModalOpen, setBudgetModalOpen] = useState(false);
