@@ -18,7 +18,7 @@ const Index = () => {
             <SalesOverview />
           </div>
           
-          <div className="w-[300px]">
+          <div className="w-[500px]">
             <OverviewCards />
           </div>
         </div>
