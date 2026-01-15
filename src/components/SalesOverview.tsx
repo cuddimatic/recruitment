@@ -4,7 +4,7 @@ const BAR_COLORS = {
   blue: "#3b82f6",
   green: "#22c55e",
   red: "#ef4444",
-  darkGreen: "#14B8A6"
+  darkGreen: "#14B8A6",
 };
 
 const chartData = [
@@ -26,73 +26,64 @@ const stats = [
     change: "+2.5%",
     colorKey: "blue",
   },
-  {
-    value: "₦50,000,000.00",
-    label: "MRR",
-    change: "+2.5%",
-    colorKey: "green",
-  },
+  { value: "₦50,000,000.00", label: "MRR", change: "+2.5%", colorKey: "green" },
   {
     value: "₦200,000,000.00",
     label: "Commission Revenue",
     change: "+0.5%",
     colorKey: "darkGreen",
   },
-  {
-    value: "₦100,000,000.00",
-    label: "GMV",
-    change: "-0.5%",
-    colorKey: "red",
-  },
+  { value: "₦100,000,000.00", label: "GMV", change: "-0.5%", colorKey: "red" },
 ];
 
 const SalesOverview = () => {
   return (
-    <div className="bg-white rounded-lg border border-slate-200">
-      <div className="p-6">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
+    <div className="rounded-lg border border-slate-200 bg-white">
+      <div className="p-4 md:p-6">
+        <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
           <div>
-            <h2 className="text-xl font-semibold text-slate-900">
+            <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
               Sales Overview
             </h2>
-            <p className="text-sm text-slate-600">
+            <p className="text-xs text-slate-600 md:text-sm">
               Showing overview Jan 2022 - Sep 2022
             </p>
           </div>
-          <button className="px-6 py-2 border border-slate-300 text-slate-900 rounded-full hover:bg-slate-50 transition-colors">
+
+          <button className="self-start rounded-full border border-slate-300 px-4 py-2 text-xs text-slate-900 transition-colors hover:bg-slate-50 md:px-6 md:text-sm">
             View Transactions
           </button>
         </div>
 
-        {/* Filters */}
-        <div className="flex items-center justify-end gap-2 mb-6">
-          <button className="px-3 py-1 text-sm text-slate-500 hover:bg-slate-100 rounded">
-            1 Week
-          </button>
-          <button className="px-3 py-1 text-sm text-slate-500 hover:bg-slate-100 rounded">
-            1 Month
-          </button>
-          <button className="px-3 py-1 text-sm bg-slate-100 text-slate-900 rounded">
-            1 Year
-          </button>
+        <div className="mb-6 flex flex-wrap justify-end gap-2">
+          {["1 Week", "1 Month", "1 Year"].map((label, i) => (
+            <button
+              key={label}
+              className={`rounded px-3 py-1 text-xs md:text-sm ${
+                i === 2
+                  ? "bg-slate-100 text-slate-900"
+                  : "text-slate-500 hover:bg-slate-100"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
 
-        <div className="flex gap-6">
-          {/* Chart */}
-          <div className="flex-1 h-[250px]">
+        <div className="flex flex-col gap-6 lg:flex-row">
+          <div className="h-[220px] w-full md:h-[250px] lg:flex-1">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData} barGap={2}>
                 <XAxis
                   dataKey="month"
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: "#64748b", fontSize: 12 }}
+                  tick={{ fill: "#64748b", fontSize: 10 }}
                 />
                 <YAxis
                   axisLine={false}
                   tickLine={false}
-                  tick={{ fill: "#64748b", fontSize: 12 }}
+                  tick={{ fill: "#64748b", fontSize: 10 }}
                   tickFormatter={(value) => `${value}m`}
                 />
                 <Bar
@@ -114,8 +105,7 @@ const SalesOverview = () => {
             </ResponsiveContainer>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 gap-4 w-[450px]">
+          <div className="grid w-full grid-cols-2 gap-3 md:gap-4 lg:max-w-[450px]">
             {stats.map((stat, index) => {
               const color =
                 BAR_COLORS[stat.colorKey as keyof typeof BAR_COLORS];
@@ -123,21 +113,26 @@ const SalesOverview = () => {
               return (
                 <div
                   key={index}
-                  className="border border-slate-200 rounded-lg p-4"
+                  className="rounded-lg border border-slate-200 p-3 md:p-4"
                 >
-                  <p className="text-lg font-bold" style={{ color }}>
+                  <p
+                    className="truncate text-sm font-bold md:text-lg"
+                    style={{ color }}
+                  >
                     {stat.value}
                   </p>
 
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-sm text-slate-600">{stat.label}</span>
+                  <div className="mt-1 flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
+                    <span className="text-xs text-slate-600 md:text-sm">
+                      {stat.label}
+                    </span>
 
                     <span
-                      className="text-xs flex items-center gap-1"
+                      className="flex items-center gap-1 text-xs"
                       style={{ color }}
                     >
                       <span
-                        className="w-2 h-2 rounded-full"
+                        className="h-2 w-2 rounded-full"
                         style={{ backgroundColor: color }}
                       />
                       {stat.change}

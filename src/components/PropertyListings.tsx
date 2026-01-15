@@ -6,23 +6,29 @@ interface PropertyCardProps {
 
 const PropertyCard = ({ image, label, title }: PropertyCardProps) => {
   return (
-    <div className="relative overflow-hidden rounded-xl group cursor-pointer">
-      <div>
-        <div className="relative h-[260px]">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    <div className="group relative cursor-pointer overflow-hidden rounded-xl">
+      <div className="relative h-[220px] sm:h-[240px] lg:h-[260px]">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
 
-          <div className="absolute bottom-0 left-0 right-0 p-4">
-            <p className="text-white/80 text-xs font-medium uppercase tracking-wide mb-1">
-              {label}
-            </p>
-            <h3 className="text-white text-lg font-semibold">{title}</h3>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-            <div className="flex items-center gap-1.5 mt-3 justify-center">
-              <div className="w-2 h-2 rounded-full bg-white" />
-              <div className="w-2 h-2 rounded-full bg-white/40" />
-              <div className="w-2 h-2 rounded-full bg-white/40" />
-            </div>
+        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+          <p className="mb-1 text-[10px] font-medium uppercase tracking-wide text-white/80 sm:text-xs">
+            {label}
+          </p>
+
+          <h3 className="truncate text-sm font-semibold text-white sm:text-base lg:text-lg">
+            {title}
+          </h3>
+
+          <div className="mt-3 flex justify-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-white" />
+            <span className="h-2 w-2 rounded-full bg-white/40" />
+            <span className="h-2 w-2 rounded-full bg-white/40" />
           </div>
         </div>
       </div>
@@ -53,13 +59,15 @@ const properties = [
 
 const PropertyListings = () => {
   return (
-    <div className="relative">
-      <div className="grid grid-cols-3 gap-6">
+    <section className="relative">
+      <div className="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {properties.map((property, index) => (
-          <PropertyCard key={index} {...property} />
+          <div key={index} className="w-[260px] shrink-0 sm:w-auto">
+            <PropertyCard {...property} />
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

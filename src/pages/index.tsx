@@ -8,22 +8,27 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader />
+
       <NavigationTabs />
-      
-      <main className="p-6">
-        <h1 className="text-2xl font-semibold text-foreground mb-6">Welcome, Ahmed</h1>
-        
-        <div className="flex gap-6 mb-6">
-          <div className="flex-1">
+
+      <main className="px-4 py-6 md:p-6">
+        <h1 className="mb-6 text-xl font-semibold text-foreground md:text-2xl">
+          Welcome, Ahmed
+        </h1>
+
+        <section className="mb-6 flex flex-col gap-6 lg:flex-row">
+          <div className="w-full lg:flex-1">
             <SalesOverview />
           </div>
-          
-          <div className="w-[500px]">
+
+          <div className="w-full lg:max-w-[500px]">
             <OverviewCards />
           </div>
-        </div>
-        
-        <PropertyListings />
+        </section>
+
+        <section>
+          <PropertyListings />
+        </section>
       </main>
     </div>
   );
